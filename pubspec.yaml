@@ -39,6 +39,11 @@ dependencies:
   intl: ^0.17.0
   firebase_core: ^1.24.0
   firebase_storage: ^10.3.11
+  firebase_auth: ^3.11.2
+  get: ^4.6.5
+  image_picker: ^0.8.6
+  google_sign_in: ^5.4.2
+  introduction_screen: ^3.0.2
 
 dev_dependencies:
   flutter_test:
