@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 import 'routes/app_pages.dart';
 
@@ -8,11 +9,27 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: "Chat App",
-      debugShowCheckedModeBanner: false,
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    return FutureBuilder(
+      future: Future.delayed(const Duration(seconds: 3)),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.done) {
+          return GetMaterialApp(
+            title: "Chat App",
+            debugShowCheckedModeBanner: false,
+            initialRoute: AppPages.INITIAL,
+            getPages: AppPages.routes,
+          );
+        } else {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: Scaffold(
+              body: Center(
+                child: Lottie.asset('assets/splash.json'),
+              ),
+            ),
+          );
+        }
+      },
     );
   }
 }
