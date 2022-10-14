@@ -2,10 +2,10 @@ name: chat_app
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment: 
+environment:
   sdk: '>=2.18.2 <3.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   intl: ^0.17.0
   firebase_core: ^1.24.0
@@ -15,13 +15,14 @@ dependencies:
   google_sign_in: ^5.4.2
   introduction_screen: ^3.0.2
   get: 4.6.5
-  flutter: 
+  flutter:
     sdk: flutter
   lottie: ^1.4.3
+  sharedpreference: ^0.0.1
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: ^2.0.1
-  flutter_test: 
+  flutter_test:
     sdk: flutter
 
 flutter:

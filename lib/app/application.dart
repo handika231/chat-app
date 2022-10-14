@@ -16,7 +16,7 @@ class Application extends StatelessWidget {
           return GetMaterialApp(
             title: "Chat App",
             debugShowCheckedModeBanner: false,
-            initialRoute: AppPages.INITIAL,
+            initialRoute: AppPages.INTRODUCTION,
             getPages: AppPages.routes,
           );
         } else {

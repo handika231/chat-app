@@ -13,6 +13,7 @@ class AppPages {
   AppPages._();
 
   static const INITIAL = Routes.HOME;
+  static const INTRODUCTION = Routes.INTRODUCTION;
 
   static final routes = [
     GetPage(

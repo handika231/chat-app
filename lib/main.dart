@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 
 import 'firebase_options.dart';
 
-void main() async {
+main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp(
