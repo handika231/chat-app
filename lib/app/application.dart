@@ -25,14 +25,14 @@ class _ApplicationState extends State<Application> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(const Duration(seconds: 3)),
+      future: Future.delayed(const Duration(seconds: 1)),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
             title: "Chat App",
             debugShowCheckedModeBanner: false,
             initialRoute: splashController.isSplash.value
-                ? AppPages.INITIAL
+                ? Routes.LOGIN
                 : AppPages.INTRODUCTION,
             getPages: AppPages.routes,
           );
