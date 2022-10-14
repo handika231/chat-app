@@ -1,11 +1,26 @@
+import 'package:chat_app/app/modules/introduction/controllers/introduction_controller.dart';
+import 'package:chat_app/injector.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import 'routes/app_pages.dart';
 
-class Application extends StatelessWidget {
+class Application extends StatefulWidget {
   const Application({Key? key}) : super(key: key);
+
+  @override
+  State<Application> createState() => _ApplicationState();
+}
+
+class _ApplicationState extends State<Application> {
+  final splashController =
+      Get.put(di.locator<IntroductionController>(), permanent: true);
+  @override
+  void initState() {
+    super.initState();
+    splashController.getIsSplash();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +31,9 @@ class Application extends StatelessWidget {
           return GetMaterialApp(
             title: "Chat App",
             debugShowCheckedModeBanner: false,
-            initialRoute: AppPages.INTRODUCTION,
+            initialRoute: splashController.isSplash.value
+                ? AppPages.INITIAL
+                : AppPages.INTRODUCTION,
             getPages: AppPages.routes,
           );
         } else {

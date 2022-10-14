@@ -1,23 +1,18 @@
+import 'package:chat_app/app/routes/app_pages.dart';
+import 'package:chat_app/app/utils/pref_helper.dart';
 import 'package:get/get.dart';
 
 class IntroductionController extends GetxController {
-  //TODO: Implement IntroductionController
+  PrefHelper prefHelper;
+  IntroductionController(this.prefHelper);
+  RxBool isSplash = false.obs;
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  Future saveSplash() async {
+    await prefHelper.isUserSplash(true);
+    Get.offAllNamed(Routes.HOME);
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future getIsSplash() async {
+    isSplash.value = await prefHelper.getUserSplash();
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }

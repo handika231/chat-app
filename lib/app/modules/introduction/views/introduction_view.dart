@@ -1,4 +1,3 @@
-import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:introduction_screen/introduction_screen.dart';
@@ -15,11 +14,11 @@ class IntroductionView extends GetView<IntroductionController> {
       body: IntroductionScreen(
         showSkipButton: true,
         done: const Text('Done'),
-        onDone: () {
-          Get.offAllNamed(Routes.HOME);
+        onDone: () async {
+          controller.saveSplash();
         },
         onSkip: () {
-          Get.offAllNamed(Routes.HOME);
+          controller.saveSplash();
         },
         next: const Icon(Icons.arrow_forward),
         skip: const Text('Skip'),
