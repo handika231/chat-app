@@ -30,7 +30,3 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/driver.json
-    - assets/laptop.json
-    - assets/login.json
-    - assets/register.json
