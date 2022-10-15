@@ -1,3 +1,4 @@
+import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +37,9 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed(Routes.CHAT_ROOM);
+        },
         backgroundColor: Colors.red[900],
         child: const Icon(
           Icons.chat_bubble,
@@ -68,7 +71,9 @@ class HomeView extends GetView<HomeController> {
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.red[900],
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Get.toNamed(Routes.PROFILE);
+                        },
                         borderRadius: BorderRadius.circular(50),
                         child: const Padding(
                           padding: EdgeInsets.all(6.0),
