@@ -3,6 +3,7 @@ import 'package:chat_app/injector.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'routes/app_pages.dart';
 
@@ -29,6 +30,17 @@ class _ApplicationState extends State<Application> {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
+            builder: (context, child) => ResponsiveWrapper.builder(
+              child,
+              maxWidth: 1200,
+              minWidth: 400,
+              defaultScale: true,
+              breakpoints: [
+                const ResponsiveBreakpoint.resize(480, name: MOBILE),
+                const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+                const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+              ],
+            ),
             title: "Chat App",
             debugShowCheckedModeBanner: false,
             initialRoute: splashController.isSplash.value
