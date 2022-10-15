@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/change_profile/bindings/change_profile_binding.dart';
+import '../modules/change_profile/views/change_profile_view.dart';
 import '../modules/chat_room/bindings/chat_room_binding.dart';
 import '../modules/chat_room/views/chat_room_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -58,6 +60,11 @@ class AppPages {
       name: _Paths.UPDATE_STATUS,
       page: () => const UpdateStatusView(),
       binding: UpdateStatusBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHANGE_PROFILE,
+      page: () => const ChangeProfileView(),
+      binding: ChangeProfileBinding(),
     ),
   ];
 }
