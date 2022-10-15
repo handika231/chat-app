@@ -12,6 +12,8 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/search/bindings/search_binding.dart';
 import '../modules/search/views/search_view.dart';
+import '../modules/update_status/bindings/update_status_binding.dart';
+import '../modules/update_status/views/update_status_view.dart';
 
 part 'app_routes.dart';
 
@@ -51,6 +53,11 @@ class AppPages {
       name: _Paths.SEARCH,
       page: () => SearchView(),
       binding: SearchBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_STATUS,
+      page: () => const UpdateStatusView(),
+      binding: UpdateStatusBinding(),
     ),
   ];
 }
