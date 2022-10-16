@@ -44,7 +44,7 @@ class _ApplicationState extends State<Application> {
             title: "Chat App",
             debugShowCheckedModeBanner: false,
             initialRoute: splashController.isSplash.value
-                ? Routes.CHANGE_PROFILE
+                ? Routes.CHAT_ROOM
                 : AppPages.INTRODUCTION,
             getPages: AppPages.routes,
           );
