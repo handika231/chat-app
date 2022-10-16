@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/chat_room_controller.dart';
+import 'widgets/item_chat_widget.dart';
 
 class ChatRoomView extends GetView<ChatRoomController> {
   const ChatRoomView({Key? key}) : super(key: key);
@@ -83,40 +84,6 @@ class ChatRoomView extends GetView<ChatRoomController> {
               ],
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class ItemChat extends StatelessWidget {
-  final bool isSender;
-  const ItemChat({super.key, required this.isSender});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 15,
-      ),
-      color: Colors.orange,
-      child: Column(
-        crossAxisAlignment:
-            isSender ? CrossAxisAlignment.start : CrossAxisAlignment.end,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.red[900],
-              borderRadius: BorderRadius.circular(8),
-            ),
-            child: const Text('Hello Selamat Siang'),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          const Text('12:00 PM'),
         ],
       ),
     );
