@@ -1,3 +1,4 @@
+import 'package:chat_app/app/controllers/application_controller.dart';
 import 'package:chat_app/app/controllers/auth_controller.dart';
 import 'package:chat_app/app/modules/introduction/controllers/introduction_controller.dart';
 import 'package:chat_app/injector.dart' as di;
@@ -24,43 +25,42 @@ class _ApplicationState extends State<Application> {
     splashController.getIsSplash();
   }
 
+  final application = Get.put(ApplicationController());
   @override
   Widget build(BuildContext context) {
     Get.put(di.locator<AuthController>(), permanent: true);
-    return FutureBuilder(
-      future: Future.delayed(const Duration(seconds: 1)),
-      builder: (context, AsyncSnapshot snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return GetMaterialApp(
-            builder: (context, child) => ResponsiveWrapper.builder(
-              child,
-              maxWidth: 1200,
-              minWidth: 400,
-              defaultScale: true,
-              breakpoints: [
-                const ResponsiveBreakpoint.resize(480, name: MOBILE),
-                const ResponsiveBreakpoint.autoScale(800, name: TABLET),
-                const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
-              ],
+
+    return Obx(() {
+      if (application.status.value == Status.success) {
+        return GetMaterialApp(
+          builder: (context, child) => ResponsiveWrapper.builder(
+            child,
+            maxWidth: 1200,
+            minWidth: 400,
+            defaultScale: true,
+            breakpoints: [
+              const ResponsiveBreakpoint.resize(480, name: MOBILE),
+              const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+              const ResponsiveBreakpoint.resize(1000, name: DESKTOP),
+            ],
+          ),
+          title: "Chat App",
+          debugShowCheckedModeBanner: false,
+          initialRoute: splashController.isSplash.value
+              ? Routes.LOGIN
+              : AppPages.INTRODUCTION,
+          getPages: AppPages.routes,
+        );
+      } else {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Scaffold(
+            body: Center(
+              child: Lottie.asset('assets/splash.json'),
             ),
-            title: "Chat App",
-            debugShowCheckedModeBanner: false,
-            initialRoute: splashController.isSplash.value
-                ? Routes.LOGIN
-                : AppPages.INTRODUCTION,
-            getPages: AppPages.routes,
-          );
-        } else {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: Scaffold(
-              body: Center(
-                child: Lottie.asset('assets/splash.json'),
-              ),
-            ),
-          );
-        }
-      },
-    );
+          ),
+        );
+      }
+    });
   }
 }
