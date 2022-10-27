@@ -61,6 +61,7 @@ class SearchView extends GetView<SearchController> {
               child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: TextField(
+                  controller: controller.searchController,
                   cursorColor: Colors.red[800],
                   decoration: InputDecoration(
                     filled: true,

@@ -8,7 +8,9 @@ class HomeView extends GetView<HomeController> {
   final List<Widget> listOfChat = List.generate(
     20,
     (index) => ListTile(
-      onTap: () {},
+      onTap: () {
+        Get.toNamed(Routes.CHAT_ROOM);
+      },
       trailing: const Chip(
         label: Text('3'),
       ),
@@ -38,11 +40,11 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.toNamed(Routes.CHAT_ROOM);
+          Get.toNamed(Routes.SEARCH);
         },
         backgroundColor: Colors.red[900],
         child: const Icon(
-          Icons.chat_bubble,
+          Icons.search,
           size: 35,
         ),
       ),

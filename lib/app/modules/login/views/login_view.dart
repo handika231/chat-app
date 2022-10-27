@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../controllers/auth_controller.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  LoginView({Key? key}) : super(key: key);
+  final authC = Get.find<AuthController>(); // <--- Add this line
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,9 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               icon: const Icon(Icons.login),
-              onPressed: () {},
+              onPressed: () {
+                authC.login(); // <--- Add this line
+              },
               label: const Text("Login With Google"),
             ),
             const SizedBox(

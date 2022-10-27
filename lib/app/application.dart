@@ -1,3 +1,4 @@
+import 'package:chat_app/app/controllers/auth_controller.dart';
 import 'package:chat_app/app/modules/introduction/controllers/introduction_controller.dart';
 import 'package:chat_app/injector.dart' as di;
 import 'package:flutter/material.dart';
@@ -25,9 +26,10 @@ class _ApplicationState extends State<Application> {
 
   @override
   Widget build(BuildContext context) {
+    final authC = Get.put(AuthController(), permanent: true);
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 1)),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           return GetMaterialApp(
             builder: (context, child) => ResponsiveWrapper.builder(
@@ -44,7 +46,7 @@ class _ApplicationState extends State<Application> {
             title: "Chat App",
             debugShowCheckedModeBanner: false,
             initialRoute: splashController.isSplash.value
-                ? Routes.CHAT_ROOM
+                ? Routes.LOGIN
                 : AppPages.INTRODUCTION,
             getPages: AppPages.routes,
           );

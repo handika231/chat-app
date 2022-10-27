@@ -1,4 +1,5 @@
-import 'package:avatar_glow/avatar_glow.dart';
+import 'package:chat_app/app/modules/profile/widgets/header_content.dart';
+import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,13 +41,17 @@ class ProfileView extends GetView<ProfileController> {
             child: Column(
               children: [
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.UPDATE_STATUS);
+                  },
                   title: const Text('Update Status'),
                   leading: const Icon(Icons.note_add_outlined),
                   trailing: const Icon(Icons.chevron_right),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.CHANGE_PROFILE);
+                  },
                   title: const Text('Change Profile'),
                   leading: const Icon(Icons.person),
                   trailing: const Icon(Icons.chevron_right),
@@ -69,68 +74,6 @@ class ProfileView extends GetView<ProfileController> {
               ),
             ),
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class HeaderContent extends StatelessWidget {
-  const HeaderContent({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Flexible(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          AvatarGlow(
-            endRadius: 100,
-            duration: const Duration(seconds: 2),
-            glowColor: Colors.grey,
-            curve: Curves.fastOutSlowIn,
-            repeat: true,
-            child: Container(
-              width: 140,
-              height: 140,
-              alignment: Alignment.center,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(70),
-                ),
-                image: DecorationImage(
-                  image: AssetImage('assets/profile.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          const Center(
-            child: Text(
-              'Lorem Ipsum',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            width: 8,
-          ),
-          const Center(
-            child: Text(
-              'Lorem Ipsum@gmail.com',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          )
         ],
       ),
     );

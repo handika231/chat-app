@@ -1,23 +1,18 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SearchController extends GetxController {
-  //TODO: Implement SearchController
+  late TextEditingController searchController;
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
+    searchController = TextEditingController();
   }
 
   @override
   void onClose() {
     super.onClose();
+    searchController.dispose();
   }
-
-  void increment() => count.value++;
 }

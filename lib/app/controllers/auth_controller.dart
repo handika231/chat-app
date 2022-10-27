@@ -1,23 +1,8 @@
+import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
-  //TODO: Implement AuthController
-
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  void login() {
+    Get.offAllNamed(Routes.HOME);
   }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
