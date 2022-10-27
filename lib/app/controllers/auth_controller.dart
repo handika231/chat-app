@@ -1,14 +1,18 @@
+import 'package:chat_app/app/controllers/firestore_controller.dart';
 import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
-  AuthController(this._auth, this._googleSignIn);
-  Future<UserCredential> login() async {
+  final FirestoreController _firestoreController;
+  UserCredential?
+      _userCredential; // This is the user that is currently logged in
+  AuthController(this._auth, this._googleSignIn, this._firestoreController);
+
+  Future login() async {
     try {
       // Trigger the authentication flow
       final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
@@ -22,20 +26,29 @@ class AuthController extends GetxController {
         accessToken: googleAuth?.accessToken,
         idToken: googleAuth?.idToken,
       );
-      debugPrint(googleUser.toString());
-      debugPrint('credential: $credential');
-
-      // Once signed in, return the UserCredential
-      return await _auth.signInWithCredential(credential).then((value) {
+      await _auth.signInWithCredential(credential).then((value) {
         Get.offAllNamed(Routes.HOME);
-        return value;
+        _userCredential = value;
       });
+      await _firestoreController.users.doc(googleUser?.email).set({
+        'uid': googleUser?.id,
+        'name': googleUser?.displayName,
+        'email': googleUser?.email,
+        'photoUrl': googleUser?.photoUrl,
+        'status': '',
+        'creationTime': _userCredential?.user?.metadata.creationTime,
+        'lastSignInTime': _userCredential?.user?.metadata.lastSignInTime,
+        'updateTime': _userCredential?.user?.metadata.lastSignInTime,
+      });
+      // Once signed in, return the UserCredential
+
     } catch (e) {
       throw Exception('error: $e');
     }
   }
 
-  void logout() {
+  Future logout() async {
+    await _googleSignIn.signOut();
     Get.offAllNamed(Routes.LOGIN);
   }
 }
