@@ -22,6 +22,7 @@ class UpdateStatusView extends GetView<UpdateStatusController> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
+              controller: controller.statusController,
               cursorColor: Colors.red[900],
               decoration: InputDecoration(
                 hintText: 'Status',

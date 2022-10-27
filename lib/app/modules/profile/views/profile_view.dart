@@ -3,10 +3,12 @@ import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../controllers/auth_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
-  const ProfileView({Key? key}) : super(key: key);
+  ProfileView({Key? key}) : super(key: key);
+  final authC = Get.find<AuthController>(); // <--- Add this line
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,9 @@ class ProfileView extends GetView<ProfileController> {
         elevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              authC.logout();
+            },
             icon: const Icon(Icons.logout),
           )
         ],

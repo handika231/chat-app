@@ -26,7 +26,7 @@ class _ApplicationState extends State<Application> {
 
   @override
   Widget build(BuildContext context) {
-    final authC = Get.put(AuthController(), permanent: true);
+    Get.put(di.locator<AuthController>(), permanent: true);
     return FutureBuilder(
       future: Future.delayed(const Duration(seconds: 1)),
       builder: (context, AsyncSnapshot snapshot) {

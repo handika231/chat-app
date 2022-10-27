@@ -45,15 +45,24 @@ class ChangeProfileView extends GetView<ChangeProfileController> {
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(hint: 'Email'),
+            CustomTextField(
+              hint: 'Email',
+              controller: controller.emailController,
+            ),
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(hint: 'Name'),
+            CustomTextField(
+              hint: 'Name',
+              controller: controller.nameController,
+            ),
             const SizedBox(
               height: 12,
             ),
-            const CustomTextField(hint: 'Status'),
+            CustomTextField(
+              hint: 'Status',
+              controller: controller.statusController,
+            ),
             const SizedBox(
               height: 12,
             ),
@@ -93,9 +102,11 @@ class ChangeProfileView extends GetView<ChangeProfileController> {
 
 class CustomTextField extends StatelessWidget {
   final String hint;
+  final TextEditingController controller;
   const CustomTextField({
     Key? key,
     required this.hint,
+    required this.controller,
   }) : super(key: key);
 
   @override
