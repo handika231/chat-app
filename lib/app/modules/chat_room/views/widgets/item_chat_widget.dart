@@ -11,7 +11,6 @@ class ItemChat extends StatelessWidget {
         horizontal: 20,
         vertical: 15,
       ),
-      color: Colors.orange,
       child: Column(
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.start : CrossAxisAlignment.end,

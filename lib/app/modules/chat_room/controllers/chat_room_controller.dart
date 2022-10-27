@@ -1,23 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ChatRoomController extends GetxController {
-  //TODO: Implement ChatRoomController
-
-  final count = 0.obs;
+  late TextEditingController textController;
+  late FocusNode focusNode;
+  RxBool isShowEmoji = false.obs;
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
+    textController = TextEditingController();
+    focusNode = FocusNode();
+    focusNode.addListener(() {
+      if (focusNode.hasFocus) {
+        isShowEmoji.value = false;
+      }
+    });
   }
 
   @override
   void onClose() {
     super.onClose();
+    textController.dispose();
+    focusNode.dispose();
   }
-
-  void increment() => count.value++;
 }
