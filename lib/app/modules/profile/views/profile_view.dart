@@ -37,7 +37,7 @@ class ProfileView extends GetView<ProfileController> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const HeaderContent(),
+          HeaderContent(),
           const SizedBox(
             height: 12,
           ),

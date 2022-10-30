@@ -9,7 +9,7 @@ class IntroductionController extends GetxController {
 
   Future saveSplash() async {
     await prefHelper.isUserSplash(true);
-    Get.offAllNamed(Routes.HOME);
+    Get.offAllNamed(Routes.LOGIN);
   }
 
   Future getIsSplash() async {

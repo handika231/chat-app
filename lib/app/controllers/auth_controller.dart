@@ -1,10 +1,12 @@
 import 'package:chat_app/app/controllers/firestore_controller.dart';
+import 'package:chat_app/app/models/user_model.dart';
 import 'package:chat_app/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
+  UserModel user = UserModel();
   final FirebaseAuth _auth;
   final GoogleSignIn _googleSignIn;
   final FirestoreController _firestoreController;
@@ -36,10 +38,15 @@ class AuthController extends GetxController {
         'email': googleUser?.email,
         'photoUrl': googleUser?.photoUrl,
         'status': '',
-        'creationTime': _userCredential?.user?.metadata.creationTime,
-        'lastSignInTime': _userCredential?.user?.metadata.lastSignInTime,
-        'updateTime': _userCredential?.user?.metadata.lastSignInTime,
+        'creationTime': _userCredential?.user?.metadata.creationTime.toString(),
+        'lastSignInTime':
+            _userCredential?.user?.metadata.lastSignInTime.toString(),
+        'updateTime': _userCredential?.user?.metadata.lastSignInTime.toString(),
       });
+      _firestoreController.users.doc(googleUser?.email).get().then((value) {
+        user = UserModel.fromJson(value.data()! as Map<String, dynamic>);
+      });
+
       // Once signed in, return the UserCredential
 
     } catch (e) {

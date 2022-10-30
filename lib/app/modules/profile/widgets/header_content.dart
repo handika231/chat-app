@@ -1,8 +1,13 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../../controllers/auth_controller.dart';
 
 class HeaderContent extends StatelessWidget {
-  const HeaderContent({
+  final authC = Get.find<AuthController>(); // <--- Add this line
+
+  HeaderContent({
     Key? key,
   }) : super(key: key);
 
@@ -36,10 +41,10 @@ class HeaderContent extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const Center(
+          Center(
             child: Text(
-              'Lorem Ipsum',
-              style: TextStyle(
+              authC.user.name, // <--- Add this line ,
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
